@@ -25,6 +25,6 @@ type Suggestion = {
     Submitter : string
     Category : Category
     Status : string
-    Votes : Vote list
+    //Votes : Vote list
 }
 
