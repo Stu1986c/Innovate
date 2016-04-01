@@ -2,3 +2,5 @@ source https://nuget.org/api/v2
 
 nuget SQLProvider
 nuget FSharp.Data.SqlClient
+nuget DotLiquid
+nuget Suave
