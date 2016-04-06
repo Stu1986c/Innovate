@@ -1,2 +1,7 @@
 ﻿DotLiquid
 Suave
+Newtonsoft.Json
+SQLProvider
+FSharp.Data.SqlClient
+Hawk
+Hawk.Suave

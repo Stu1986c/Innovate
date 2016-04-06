@@ -4,3 +4,6 @@ nuget SQLProvider
 nuget FSharp.Data.SqlClient
 nuget DotLiquid
 nuget Suave
+nuget Newtonsoft.Json
+nuget Hawk
+nuget Hawk.Suave

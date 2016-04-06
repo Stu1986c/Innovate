@@ -10,20 +10,21 @@ type Stakeholder = {
 type Vote = {
     VoteId : int
     Opinion : int
-    StakeholderId : int
+    VoterId : int
+    SuggestionId : int
 }
 
-type Category = {
-    CategoryId : int
-    CategoryText : string
-    CategoryOwner : string
-}
+//type Category = {
+//    CategoryId : int
+//    CategoryText : string
+//    CategoryOwner : string
+//}
 
 type Suggestion = {
     SuggestionId : int
     SuggestionText : string
     Submitter : string
-    Category : Category
+    CategoryId : int
     Status : string
     //Votes : Vote list
 }
