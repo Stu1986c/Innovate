@@ -41,35 +41,37 @@ module DataConnection =
             VoterId = voteEntity.VoterId
         }
 
-
     let getAllSuggestions () = 
         let ctx = getContext()
         ctx.Dbo.Suggestions |> Seq.map mapToSuggestion
 
-    let getAllSuggestionsByCategoryId (ctx : DbContext) categoryId = 
-        query {
-            for suggestion in ctx.Dbo.Suggestions do
-                where (suggestion.CategoryId = categoryId)
-                select suggestion
-        } |> Seq.toList
+//    let getAllSuggestionsByCategoryId categoryId = 
+//        let ctx = getContext()
+//        query {
+//            for suggestion in ctx.Dbo.Suggestions do
+//                where (suggestion.CategoryId = categoryId)
+//                select suggestion
+//        } |> Seq.map mapToSuggestion
 
-    let getAllSuggestionsBySubmitter (ctx : DbContext) submitterName = 
-        query {
-            for suggestion in ctx.Dbo.Suggestions do
-                where (suggestion.Submitter = submitterName)
-                select suggestion
-        } |> Seq.toList
+//    let getAllSuggestionsBySubmitter (ctx : DbContext) submitterName = 
+//        query {
+//            for suggestion in ctx.Dbo.Suggestions do
+//                where (suggestion.Submitter = submitterName)
+//                select suggestion
+//        } |> Seq.toList
 
-    let getAllSuggestionsBySuggestionId suggestionId (ctx : DbContext) : SuggestionEntity option = 
-        query {
-            for suggestion in ctx.Dbo.Suggestions do
-                where (suggestion.SuggestionId = suggestionId)
-                select suggestion
-        } |> firstOrNone
+
+    let getSuggestionById suggestionId = 
+        let ctx = getContext()
+        query { 
+            for suggestion in ctx.Dbo.Suggestions do 
+                where (suggestion.SuggestionId = suggestionId) 
+                select suggestion 
+            } |> Seq.map mapToSuggestion |> Seq.exactlyOne
 
     let createSuggestion suggestion =
         let ctx = getContext()
-        let suggestion = ctx.Dbo.Suggestions.Create(suggestion.CategoryId, suggestion.Status, suggestion.Submitter, suggestion.SuggestionText)
+        let persistedSuggestion = ctx.Dbo.Suggestions.Create(suggestion.CategoryId, suggestion.Status, suggestion.Submitter, suggestion.SuggestionText)
         ctx.SubmitUpdates()
-        suggestion |> mapToSuggestion
+        persistedSuggestion |> mapToSuggestion
 

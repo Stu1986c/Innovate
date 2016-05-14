@@ -7,3 +7,4 @@ nuget Suave
 nuget Newtonsoft.Json
 nuget Hawk
 nuget Hawk.Suave
+nuget FAKE
